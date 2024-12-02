@@ -9,7 +9,7 @@ const cityName = document.getElementById('city-name');
 const humidity = document.getElementById('humidity');
 const windSpeed = document.getElementById('wind-speed');
 
-// Function to fetch and display weather data
+
 const fetchWeather = () => {
   const city = cityInput.value.trim();
   if (!city) {
@@ -17,7 +17,7 @@ const fetchWeather = () => {
     return;
   }
 
-  // Fetch weather data from the OpenWeatherMap API
+  // Fetch data from the API
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
     .then(response => {
       if (!response.ok) {
@@ -26,10 +26,10 @@ const fetchWeather = () => {
       return response.json();
     })
     .then(data => {
-      // Extract relevant data from the response
+      
       const { name, main, weather, wind } = data;
 
-      // Update UI with weather data
+      
       weatherIcon.src = `https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
       temperature.textContent = `${main.temp}°C`;
       cityName.textContent = name;
@@ -41,10 +41,9 @@ const fetchWeather = () => {
     });
 };
 
-// Event listener for the search button
+
 searchBtn.addEventListener('click', fetchWeather);
 
-// Event listener for the Enter key
 cityInput.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     fetchWeather();
